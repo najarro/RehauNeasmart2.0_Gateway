@@ -1,5 +1,5 @@
 name: Rehau Neasmart 2.0 Gateway
-version: "0.2.9-baudrate-fix"
+version: "0.3.0-serial-fix"
 slug: rehau_neasmart_gateway
 description: Shim between Rehau Neasmart 2.0 Modbus RTU-Serial/TCP and REST
 url: "https://github.com/najarro/RehauNeasmart2.0_Gateway/blob/main/rehau_neasmart2.0_gateway"
@@ -13,9 +13,9 @@ ports:
   502/tcp: 502
   5000/tcp: 5000
 options:
-  listen_address: "0.0.0.0"
+  listen_address: "/dev/ttyUSB0"
   listen_port: "502"
-  server_type: "tcp"
+  server_type: "serial"
   slave_id: 240
   slave_ids:
     - 240
@@ -23,6 +23,9 @@ options:
   registers_stale_after_seconds: 180
   persist_command_registers: false
   command_sync_timeout_seconds: 30
+  startup_global_mode: 0
+  startup_global_state: 0
+  suppress_sysbus_noise: true
 schema:
   listen_address: "str?"
   listen_port: "str?"
@@ -33,4 +36,6 @@ schema:
   registers_stale_after_seconds: "int?"
   persist_command_registers: "bool?"
   command_sync_timeout_seconds: "int?"
-  
+  startup_global_mode: "int?"
+  startup_global_state: "int?"
+  suppress_sysbus_noise: "bool?"
